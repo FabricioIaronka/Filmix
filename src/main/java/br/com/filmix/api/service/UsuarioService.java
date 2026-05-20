@@ -36,4 +36,8 @@ public class UsuarioService {
         return usuarioMapper.toResponseDTO(usuario);
     }
 
+    public UsuarioResponseDTO getMe(Usuario usuarioLogado) {
+        return usuarioMapper.toResponseDTO(usuarioLogado);
+    }
+
 }
