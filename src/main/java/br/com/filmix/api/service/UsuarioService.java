@@ -98,4 +98,9 @@ public class UsuarioService {
         usuario.setRole(novoRole);
         usuarioRepository.save(usuario);
     }
+
+    @Transactional
+    public void deletarConta(Long id) {
+        usuarioRepository.deleteById(id);
+    }
 }
