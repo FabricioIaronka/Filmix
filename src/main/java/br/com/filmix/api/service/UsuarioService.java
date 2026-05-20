@@ -1,5 +1,6 @@
 package br.com.filmix.api.service;
 
+import br.com.filmix.api.dto.usuario.AlterarSenhaDTO;
 import br.com.filmix.api.dto.usuario.AtualizarUsuarioDTO;
 import br.com.filmix.api.dto.usuario.UsuarioRequestDTO;
 import br.com.filmix.api.dto.usuario.UsuarioResponseDTO;
@@ -10,8 +11,11 @@ import br.com.filmix.api.repository.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.AuthenticationException;
 
 @RequiredArgsConstructor
 @Service
@@ -21,6 +25,7 @@ public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final UsuarioMapper usuarioMapper;
     private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
 
 
     @Transactional
@@ -57,4 +62,26 @@ public class UsuarioService {
 
         return usuarioMapper.toResponseDTO(usuario);
     }
+
+
+    @Transactional
+    public void alterarSenha(Usuario usuarioLogado, AlterarSenhaDTO dto) {
+        Usuario usuario = usuarioRepository.findById(usuarioLogado.getId())
+                .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
+
+        try {
+            var authenticationToken = new UsernamePasswordAuthenticationToken(usuario.getEmail(), dto.senhaAntiga());
+            authenticationManager.authenticate(authenticationToken);
+        } catch (AuthenticationException e) {
+            throw new RegraDeNegocioException("Senha antiga incorreta.");
+        }
+
+        if (passwordEncoder.matches(dto.senhaNova(), usuario.getSenhaHash())) {
+            throw new RegraDeNegocioException("A nova senha não pode ser igual à senha antiga.");
+        }
+
+        String novaSenhaHash = passwordEncoder.encode(dto.senhaNova());
+        usuario.setSenhaHash(novaSenhaHash);
+    }
+
 }
