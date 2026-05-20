@@ -6,6 +6,7 @@ import br.com.filmix.api.dto.usuario.UsuarioRequestDTO;
 import br.com.filmix.api.dto.usuario.UsuarioResponseDTO;
 import br.com.filmix.api.exception.RegraDeNegocioException;
 import br.com.filmix.api.mapper.UsuarioMapper;
+import br.com.filmix.api.model.Role;
 import br.com.filmix.api.model.Usuario;
 import br.com.filmix.api.repository.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -88,5 +89,13 @@ public class UsuarioService {
 
     public List<Usuario> listarTodos() {
         return usuarioRepository.findAll();
+    }
+
+    public void atualizarRole(Long id, Role novoRole) {
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com id: " + id));
+
+        usuario.setRole(novoRole);
+        usuarioRepository.save(usuario);
     }
 }
