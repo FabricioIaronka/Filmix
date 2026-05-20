@@ -17,6 +17,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.AuthenticationException;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class UsuarioService {
@@ -84,4 +86,7 @@ public class UsuarioService {
         usuario.setSenhaHash(novaSenhaHash);
     }
 
+    public List<Usuario> listarTodos() {
+        return usuarioRepository.findAll();
+    }
 }
