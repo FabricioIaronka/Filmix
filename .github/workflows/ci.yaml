@@ -1,0 +1,60 @@
+name: Pipeline de Integração Contínua (CI)
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  # ==========================================
+  # JOB 1: VALIDAÇÃO DO BACKEND (JAVA/SPRING)
+  # ==========================================
+  backend-validation:
+    name: Build e Testes do Backend
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1. Clonar o repositório
+        uses: actions/checkout@v4
+
+      - name: 2. Verificar arquivos obrigatórios do Backend
+        run: |
+          if [ ! -f "pom.xml" ]; then echo "❌ Erro: pom.xml não encontrado"; exit 1; fi
+          echo "✅ Arquivos do backend estão presentes."
+
+      - name: 3. Configurar ambiente Java (JDK 24)
+        uses: actions/setup-java@v4
+        with:
+          java-version: '24'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: 4. Instalar Dependências e Executar Build (Backend)
+        run: mvn clean verify
+
+  # ==========================================
+  # JOB 2: VALIDAÇÃO DO FRONTEND (HTML/CSS/JS)
+  # ==========================================
+  frontend-validation:
+    name: Build e Validação do Frontend
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1. Clonar o repositório
+        uses: actions/checkout@v4
+
+      - name: 2. Verificar arquivos obrigatórios do Frontend
+        # Ajuste "index.html" para o caminho real do seu arquivo principal
+        run: |
+          if [ ! -f "index.html" ]; then echo "❌ Erro: index.html não encontrado"; exit 1; fi
+          echo "✅ Arquivos do frontend estão presentes."
+
+      - name: 3. Configurar ambiente Node.js (Para validações)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 4. Validação da estrutura HTML (Linter Real)
+        # Instala um validador de HTML real e verifica seus arquivos
+        run: |
+          npm install -g htmlhint
+          htmlhint "**/*.html"
