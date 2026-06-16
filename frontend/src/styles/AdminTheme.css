@@ -1,0 +1,120 @@
+/* container principal */
+.admin-container {
+    background-color: #141414;
+    min-height: 90vh;
+    padding: 2rem;
+    color: #f5f5f5;
+    border-radius: 8px;
+    border: 1px solid #333;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* títulos */
+.page-title {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    color: #dc3545;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.page-subtitle {
+    color: #aaa;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* Tabelas escuras */
+.table-cinema {
+    background-color: #1f1f1f !important;
+    color: #e5e5e5 !important;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 1.5rem;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table-cinema thead th {
+    background-color: #dc3545 !important;
+    color: #fff !important;
+    border: none;
+    padding: 1rem;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.table-cinema tbody td {
+    background-color: #2a2a2a !important;
+    color: #f5f5f5 !important;
+    border-bottom: 1px solid #444;
+    vertical-align: middle;
+    padding: 1rem;
+}
+
+.table-cinema tbody tr:hover td {
+    background-color: #333 !important; /* Efeito Hover */
+}
+
+/* Modal escuro */
+.modal-dark .modal-content {
+    background-color: #222;
+    color: #f5f5f5;
+    border: 1px solid #444;
+}
+
+.modal-dark .modal-header {
+    border-bottom: 1px solid #444;
+}
+
+.modal-dark .modal-footer {
+    border-top: 1px solid #444;
+}
+
+.modal-dark .btn-close {
+    filter: invert(1)
+}
+
+/* Garante que os inputs tenham fundo escuro e texto claro */
+.form-control-dark {
+    background-color: #121212;
+    border: 1px solid #444;
+    color: #e0e0e0;
+}
+
+.form-control-dark:focus {
+    background-color: #121212;
+    color: #fff;
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}
+
+/* Para os placeholders não ficarem invisíveis */
+.form-control-dark::placeholder {
+    color: #666;
+}
+
+/* avatar pequeno para tabelas */
+.user-avatar-small {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover; /* garante que a imagem não estique */
+    border: 2px solid #333;
+    background-color: #dc3545; /* cor de fundo caso a imagem demore a carregar */
+}
+
+/* Placeholder quando não tem foto */
+.user-avatar-placeholder {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #333;
+    border-radius: 50%;
+    color: #aaa;
+}
