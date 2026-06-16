@@ -1,0 +1,222 @@
+/* --- Estilos para o Card (Obriga a sobreposição) --- */
+.film-card {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    background-color: #1a1a1a;
+    border-radius: 8px; /* Borda arredondada */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+    /* Pulo do gato 1: Força o card a ser flex e de cima para baixo */
+    display: flex;
+    flex-direction: column;
+}
+
+.film-card:hover {
+    transform: scale(1.03); /* Leve "zoom" no hover */
+}
+
+/* --- O NOVO OVERLAY (Camada por cima da imagem) --- */
+.film-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end; /* Alinha os itens à direita */
+    padding: 10px;
+    z-index: 5;
+
+    /* Gradiente sutil para escurecer (estilo cinema) */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%);
+
+    /* --- A MUDANÇA (só aparece no hover) --- */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* O Overlay aparece quando passamos o rato por cima do CARD */
+.film-card:hover .film-card-overlay {
+    opacity: 1;
+}
+
+/* --- Estilo da Imagem e Título --- */
+
+/* * --- CORREÇÃO DO BUG DO "PODEROSO CHEFÃO" ---
+ * Força a imagem a ter uma proporção de poster (2:3)
+ */
+.film-card-img {
+    width: 100%;
+    height: auto; /* Deixa a altura ser definida pelo aspect-ratio */
+    aspect-ratio: 2/3; /* Proporção de Poster (Pulo do Gato 2) */
+    object-fit: cover; /* Garante que a imagem preenche sem distorcer */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+/* --- FIM DA CORREÇÃO --- */
+
+
+.film-card-title {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.75rem;
+    color: #f5f5ff;
+    background-color: #1a1a1a;
+    margin: 0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+
+    /* Pulo do Gato 3: Garante que o título não "cresce" */
+    flex-shrink: 0;
+}
+
+
+/*
+ * --- NOVOS ESTILOS "CINEMA" PARA OS CONTROLES (EM DESTAQUE) ---
+ */
+
+/* O container do cabeçalho (Título + Controles) */
+.page-header-container {
+    display: flex;
+    justify-content: space-between; /* Título na esquerda, Controles na direita */
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+    gap: 1rem; /* Espaço entre título e controles */
+}
+
+/* O container dos controles (Pesquisa + Ícones) */
+.page-controls-container {
+    display: flex;
+    gap: 1rem; /* ESPAÇO MAIOR (como pediste) */
+    align-items: center;
+}
+
+/* A barra de pesquisa (MAIOR E EM DESTAQUE) */
+.control-search {
+    width: 350px;
+    height: 44px;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 22px; /* Metade da altura (pill) */
+    transition: all 0.2s ease;
+    display: flex;
+}
+/* Remove os estilos padrão do input-group */
+.control-search .form-control,
+.control-search .input-group-text {
+    background-color: transparent;
+    border: none;
+    color: white;
+    box-shadow: none;
+    font-size: 1rem;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.control-search .input-group-text {
+    color: #aaa;
+    padding-left: 1rem; /* Mais espaço interno */
+}
+.control-search .form-control::placeholder {
+    color: #888;
+}
+/* Efeito "Cinema": Brilho vermelho no foco */
+.control-search:focus-within {
+    border-color: #dc3545;
+    box-shadow: 0 0 10px rgba(220, 53, 69, 0.4);
+}
+
+
+/* Botões de Ícone (MAIORES E CIRCULARES) */
+.control-icon-button {
+    background: #2a2a2a;
+    border: 1px solid #444;
+    color: #aaa;
+    font-size: 1.3rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+.control-icon-button:hover, .control-icon-button:focus {
+    color: #ffc107 !important;
+    background-color: #333 !important;
+    border: 1px solid #ffc107 !important;
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.3) !important;
+}
+/* Quando o dropdown está aberto, fica vermelho */
+.control-icon-button.show {
+    color: #dc3545 !important;
+    background-color: #333 !important;
+    border: 1px solid #dc3545 !important;
+    box-shadow: 0 0 10px rgba(220, 53, 69, 0.4) !important;
+}
+
+/* --- NOVO ESTILO: Ícone Ativo (quando o filtro/ordenação está aplicado) --- */
+.control-icon-button.active-filter {
+    color: #ffc107 !important; /* Ícone dourado */
+    border: 1px solid #ffc107 !important; /* Borda dourada */
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.6) !important; /* Brilho dourado mais forte */
+}
+
+
+/* Menu Dropdown (Nítido e Organizado) */
+.control-dropdown-menu {
+    background-color: #2a2a2a;
+    border: 1px solid #555;
+    border-radius: 8px;
+    margin-top: 0.5rem !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.control-dropdown-menu .dropdown-header {
+    color: #c0392b; /* Vermelho Escuro (como pediste) */
+    font-weight: 600;
+}
+.control-dropdown-menu .dropdown-item {
+    color: #f5f5fS5;
+    transition: background-color 0.2s ease;
+}
+.control-dropdown-menu .dropdown-item:hover {
+    background-color: #dc3545; /* Vermelho no hover */
+    color: white;
+}
+.control-dropdown-menu .dropdown-item.active {
+    background-color: #dc3545; /* Vermelho se estiver ativo */
+    color: white;
+}
+.control-dropdown-menu .dropdown-divider {
+    border-top: 1px solid #444;
+}
+
+/* Adicione isto ao final do seu ExplorarPage.css ou App.css */
+
+/* Badge de nota flutuante no card */
+.card-rating-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #ffc107; /* Amarelo Estrela */
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    z-index: 6; /* Acima do overlay */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+}
+
+/* Estilo do Toast (Copiado do perfil para manter consistência) */
+.cinema-toast {
+    background-color: #1a1a1a !important;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.8);
+    opacity: 1 !important; /* Fix para bootstrap toast */
+}
+.cinema-toast.border-success { border-left: 4px solid #198754 !important; }
+.cinema-toast.border-danger { border-left: 4px solid #dc3545 !important; }
+.cinema-toast.border-warning { border-left: 4px solid #ffc107 !important; }

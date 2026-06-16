@@ -1,0 +1,130 @@
+:root {
+    --sidebar-expanded: 260px;
+    --sidebar-collapsed: 70px;
+    --bg-sidebar: #0f0f0f; /* PRETO PREMIUM */
+    --text-sidebar: #aaa;
+}
+
+.sidebar {
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid #222;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    /* A MÁGICA DA ANIMAÇÃO SUAVE */
+    transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow-x: hidden;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar.expanded { width: var(--sidebar-expanded); }
+.sidebar.collapsed { width: var(--sidebar-collapsed); }
+
+.sidebar-logo {
+    width: 140px;
+    object-fit: contain;
+    transition: all 0.3s;
+}
+
+/* Botão Toggle */
+.btn-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.btn-toggle:hover { transform: scale(1.1); color: #fff !important; }
+
+/* Links */
+.nav-link {
+    color: var(--text-sidebar) !important;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    transition: all 0.2s ease-in-out;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    background-color: rgba(255,255,255,0.08);
+    color: #fff !important;
+    transform: translateX(4px);
+}
+
+.active-link {
+    background-color: #dc3545 !important; /* Vermelho Filmix */
+    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+}
+.active-link:hover { transform: none; }
+
+/* Títulos */
+.section-title {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #555;
+    font-weight: 700;
+    margin: 15px 0 5px 10px;
+}
+
+/* User Profile no Footer */
+.user-box {
+    padding: 8px;
+    border-radius: 8px;
+    background-color: rgba(255,255,255,0.05);
+}
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* Fade Animation */
+.fade-in {
+    animation: fadeIn 0.5s ease;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* ... Mantenha o CSS anterior ... */
+
+/* --- ESTILO ESPECÍFICO PARA ADMIN --- */
+
+/* 1. Estado Padrão: Texto e Ícone Vermelhos */
+.nav-link.admin-link {
+    color: #dc3545 !important; /* Vermelho */
+    transition: all 0.3s ease;
+}
+
+/* 2. Garante que o ícone herde a cor do link (seja vermelho ou branco) */
+.nav-link.admin-link svg {
+    color: inherit !important;
+}
+
+/* 3. Hover (Passar o mouse): Fundo vermelho suave, texto vermelho claro */
+.nav-link.admin-link:hover {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #ff6b7a !important;
+}
+
+/* 4. Ativo (Clicado): Fundo Vermelho, Texto e Ícone BRANCOS */
+.nav-link.admin-link.active-link {
+    background-color: #dc3545 !important; /* Fundo Vermelho */
+    color: #ffffff !important; /* Texto Branco */
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4); /* Brilho */
+}
