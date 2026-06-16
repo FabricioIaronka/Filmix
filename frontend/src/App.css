@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+body {
+  background-color: #141414;
+  color: #f5f5f5;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+}
+.app-layout {
+  display: flex;
+}
+.main-content {
+  margin-left: 250px;
+  padding: 2rem;
+  width: calc(100% - 250px);
+  box-sizing: border-box;
+  transition: margin-left 0.3s ease, width 0.3s ease;
+}
+.sidebar.collapsed + .main-content {
+  margin-left: 90px;
+  width: calc(100% - 90px);
+}
+
+/* força todos os títulos das pgs serem vermelhos */
+.page-title {
+    color: #dc3545 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+/* subtítulos brancos/cinza */
+.page-subtitle {
+    color: #aaa !important;
+    font-weight: 400;
+}
