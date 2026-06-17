@@ -1,0 +1,60 @@
+/* arquivo AdminAvaliacoesPage.css - estilos dos controles (inspirado na imagem) */
+
+.page-header-container { display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:1rem; flex-wrap:wrap; }
+.page-controls-container { display:flex; gap:0.5rem; align-items:center; }
+
+/* search pill */
+.control-search {
+  width: 320px;
+  height: 40px;
+  background: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 22px;
+  padding: 0.15rem;
+}
+.control-search .form-control { background: transparent; border: none; color: #ddd; }
+.control-search .form-control::placeholder { color: #8b8b8b; }
+
+/* select compacto */
+.control-select {
+  background: #1e1e1e;
+  color: #ddd;
+  border: 1px solid #333;
+  width: 220px;
+  height: 40px;
+  border-radius: 8px;
+}
+
+/* icon buttons circular */
+.control-icon-button {
+  background: #1e1e1e;
+  border: 1px solid #333;
+  color: #bbb;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display:flex; align-items:center; justify-content:center;
+}
+.control-icon-button.active-filter { color:#ffcf5a; border-color:#ffcf5a; box-shadow:0 0 12px rgba(255,207,90,0.12); }
+
+/* dropdown menu dark & long like image */
+.control-dropdown-menu {
+  background: #111;
+  color: #eee;
+  border: 1px solid #222;
+  min-width: 240px;
+  padding: 0.5rem 0;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+}
+.control-dropdown-menu .dropdown-header { color:#d94a4a; font-weight:700; padding:0.5rem 1rem; }
+.control-dropdown-menu .dropdown-item { color:#eee; }
+.control-dropdown-menu .dropdown-item:hover { background:#2a2a2a; }
+
+/* melhora tabela escura */
+.table-cinema { color: #e6e6e6; }
+.table-cinema thead th { border-bottom: 1px solid #333; color:#bbb; }
+.table-cinema tbody tr td { vertical-align: middle; border-top: 1px solid rgba(255,255,255,0.02); }
+
+/* melhorar contraste do texto mutado */
+.text-muted.small { color: #b3b3b3 !important; }
