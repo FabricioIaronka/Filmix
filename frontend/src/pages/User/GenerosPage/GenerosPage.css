@@ -1,0 +1,76 @@
+/* --- ESTILO DOS CARDS DE GÊNERO (Estilo "Cinema" Final) --- */
+.genre-card {
+    background-color: #2a2a2a; /* Fundo escuro */
+    border-radius: 8px;
+    padding: 1.5rem;
+    height: 100%;
+    min-height: 180px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+/* --- TÍTULO DO GÊNERO (Branco por defeito, Vermelho no hover) --- */
+.genre-card {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.genre-card:hover {
+    transform: translateY(-5px);
+    /* Usa a cor do gênero para a borda e sombra */
+    border-color: var(--genre-color);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 15px var(--genre-color); /* Glow colorido */
+}
+
+/* O ícone também pode brilhar no hover */
+.genre-card:hover .genre-card-icon-container {
+    transform: scale(1.1);
+    text-shadow: 0 0 10px var(--genre-color);
+}
+
+.genre-card-icon-container {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.genre-card-title {
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.genre-card-subtitle {
+    color: #777;
+    font-size: 0.9rem;
+    margin: 0;
+    transition: color 0.3s;
+}
+
+/* Muda a cor do subtítulo no hover também */
+.genre-card:hover .genre-card-subtitle {
+    color: #fff;
+}
